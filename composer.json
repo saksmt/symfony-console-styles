@@ -14,7 +14,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Smt\\Component\\Console": "Console"
+      "Smt\\Component\\Console\\": "Console"
     }
   },
   "require": {
