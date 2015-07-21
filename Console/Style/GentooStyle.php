@@ -10,70 +10,58 @@ class GentooStyle extends AbstractLinuxDistributionStyle
 {
     /**
      * @inheritdoc
-     * @return $this
      */
     public function title($message)
     {
-        $this->writeln('');
-        $this->writeln(sprintf('<title>%s</title>', $message));
-        return $this;
+        return $this
+            ->writeln('')
+            ->writeln(sprintf('<title>%s</title>', $message));
     }
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function section($message)
     {
-        $this->writeln('');
-        $this->writeln(sprintf('<success>%s</success>', $message));
-        return $this;
+        return $this
+            ->writeln('')
+            ->writeln(sprintf('<success>%s</success>', $message));
     }
 
     /**
      * @inheritdoc
-     * @return $this
      */
-    public function listing(array $elements)
+    protected function nestedListElement($element, $level = 1)
     {
-        $this->writeln(array_map(function ($element) {
-            return sprintf(' <question>%s</question>', $element);
-        }, $elements));
-        return $this;
+        return $this->writeln(sprintf('%s<question>%s</question>', str_repeat(' ', $level), $element));
     }
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function note($message)
     {
-        $this->message($message, 'info', '<info>NOTE: </info>');
-        return $this;
+        return $this->message($message, 'info', '<info>NOTE: </info>');
     }
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function caution($message)
     {
-        $this->message($message, 'error', '<error>CAUTION: </error>');
-        return $this;
+        return $this->message($message, 'error', '<error>CAUTION: </error>');
     }
 
     /**
-     * @param string $message
-     * @return $this
+     * @inheritdoc
      */
     public function important($message)
     {
-        $this->message($message, 'warning', '<warning>IMPORTANT: </warning>');
-        return $this;
+        return $this->message($message, 'warning', '<warning>IMPORTANT: </warning>');
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     protected function getMessageSymbol()
     {
@@ -89,8 +77,7 @@ class GentooStyle extends AbstractLinuxDistributionStyle
     }
 
     /**
-     * @param OutputFormatterInterface $formatter
-     * @return OutputFormatterInterface
+     * @inheritdoc
      */
     protected function customizeFormatter(OutputFormatterInterface $formatter)
     {

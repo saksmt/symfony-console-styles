@@ -43,8 +43,7 @@ class KernelStyle extends AbstractLinuxDistributionStyle
      */
     public function title($message)
     {
-        $this->writeln(sprintf('<title>%s</title>', $message));
-        return $this;
+        return $this->writeln(sprintf('<title>%s</title>', $message));
     }
 
     /**
@@ -52,19 +51,7 @@ class KernelStyle extends AbstractLinuxDistributionStyle
      */
     public function section($message)
     {
-        $this->writeln($message);
-        return $this;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function listing(array $elements)
-    {
-        $this->writeln(array_map(function ($element) {
-            return ' ' . $element;
-        }, $elements));
-        return $this;
+        return $this->writeln($message);
     }
 
     /**
@@ -103,5 +90,13 @@ class KernelStyle extends AbstractLinuxDistributionStyle
         $this->prefixes['caution'] = $formatter->format('[<error> !! </error>] ');
         $this->prefixes['note'] = $formatter->format('[<info>NOTE</info>] ');
         $this->prefixes['important'] = $formatter->format('[<warning> !! </warning>] ');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function nestedListElement($element, $level = 1)
+    {
+        return $this->writeln(str_repeat(' ', $level) . $element);
     }
 }

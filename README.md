@@ -67,7 +67,8 @@ Here `$message` can only be string.
 Components
 ----------
 
- * `Style::listing($items)` - Prints list;
+ * `Style::listing($items)` - Prints list (multidimensional array support);
+ * `Style::nestedList($items, $level = 1)` - Prints nested list at some level (multidimensional array support);
  * `Style::table($headers, $rows)` - Prints table;
  * `Style::progressStart($max = 0)` - Start progress (progressbar);
  * `Style::progressAdvance($step = 1)` - Advance progress (progressbar);

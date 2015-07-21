@@ -88,7 +88,34 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
      * @inheritdoc
      * @return $this
      */
-    abstract public function listing(array $elements);
+    public function listing(array $elements)
+    {
+        return $this->nestedList($elements);
+    }
+
+    /**
+     * @param string $element
+     * @param int $level
+     * @return $this
+     */
+    abstract protected function nestedListElement($element, $level = 1);
+
+    /**
+     * @param array $elements
+     * @param int $level
+     * @return $this
+     */
+    public function nestedList(array $elements, $level = 1)
+    {
+        foreach ($elements as $element) {
+            if (is_array($element)) {
+                $this->nestedList($element, $level + 1);
+            } else {
+                $this->nestedListElement($element, $level);
+            }
+        }
+        return $this;
+    }
 
     /**
      * @param OutputFormatterInterface $formatter
@@ -113,8 +140,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
         if (is_array($message)) {
             $message = implode(PHP_EOL . $this->prefixes[$type] . $prefix, $message);
         }
-        $this->writeln($this->prefixes[$type] . $prefix . $message);
-        return $this;
+        return $this->writeln($this->prefixes[$type] . $prefix . $message);
     }
 
     /**
@@ -123,8 +149,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
      */
     public function info($message)
     {
-        $this->message($message, 'info');
-        return $this;
+        return $this->message($message, 'info');
     }
 
     /**
@@ -142,8 +167,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
      */
     public function success($message)
     {
-        $this->message($message, 'success');
-        return $this;
+        return $this->message($message, 'success');
     }
 
     /**
@@ -152,8 +176,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
      */
     public function error($message)
     {
-        $this->message($message, 'error');
-        return $this;
+        return $this->message($message, 'error');
     }
 
     /**
@@ -162,8 +185,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
      */
     public function warning($message)
     {
-        $this->message($message, 'warning');
-        return $this;
+        return $this->message($message, 'warning');
     }
 
     /**
@@ -238,8 +260,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
      */
     public function newLine($count = 1)
     {
-        $this->write(str_repeat(PHP_EOL, $count));
-        return $this;
+        return $this->write(str_repeat(PHP_EOL, $count));
     }
 
     /**
