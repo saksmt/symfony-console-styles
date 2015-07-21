@@ -77,7 +77,7 @@ class GentooStyle extends AbstractLinuxDistributionStyle
      */
     protected function getMessageSymbol()
     {
-        return ' * ';
+        return '*';
     }
 
     /**
