@@ -1,0 +1,24 @@
+{
+  "name": "smt/symfony-console-styles",
+  "description": "Small set of styles for symfony/console, currently containing gentoo and linux kernel styles.",
+  "author": {
+    "Kirill Saksin": "kirillsaksin@yandex.ru"
+  },
+  "keywords": [
+    "symfony",
+    "console",
+    "cli",
+    "gentoo",
+    "linux",
+    "kernel"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Smt\\Component\\Console": "Console"
+    }
+  },
+  "require": {
+    "php": ">=5.4",
+    "symfony/console": "~2,>=2.6"
+  }
+}
