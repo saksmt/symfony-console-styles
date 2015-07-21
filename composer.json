@@ -4,6 +4,8 @@
   "author": {
     "Kirill Saksin": "kirillsaksin@yandex.ru"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/saksmt/symfony-console-styles",
   "keywords": [
     "symfony",
     "console",
