@@ -49,8 +49,16 @@ class VisualTest
             ->newLine()
             ->caution($m)
             ->newLine()
-            ->writeln('Listing:')
+            ->info('Listing:')
             ->listing($l)
+            ->newLine()
+            ->info('Nested list:')
+            ->nestedList([
+                'Nested:',
+                $l,
+                'Another:',
+                ['One:', ['Nested', ['List:', $l]]],
+            ])
             ->newLine()
         ;
         $style->ask('Question?');

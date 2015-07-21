@@ -97,6 +97,6 @@ class KernelStyle extends AbstractLinuxDistributionStyle
      */
     protected function nestedListElement($element, $level = 1)
     {
-        return $this->writeln(str_repeat(' ', $level) . $element);
+        return $this->writeln(str_repeat(' ', $level * 2) . '* ' . $element);
     }
 }

@@ -33,7 +33,7 @@ class GentooStyle extends AbstractLinuxDistributionStyle
      */
     protected function nestedListElement($element, $level = 1)
     {
-        return $this->writeln(sprintf('%s<question>%s</question>', str_repeat(' ', $level), $element));
+        return $this->writeln(sprintf('%s<question>%s</question>', str_repeat(' ', $level * 4), $element));
     }
 
     /**
