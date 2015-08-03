@@ -30,6 +30,7 @@ class StubStyle extends AbstractLinuxDistributionStyle
     /** @inheritdoc */
     protected function customizeFormatter(OutputFormatterInterface $formatter)
     {
+        return $formatter;
     }
 
     /** @inheritdoc */
