@@ -10,6 +10,9 @@ use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
+/**
+ * @package Smt\Component\Console\Helper
+ */
 class GentooQuestionHelper extends QuestionHelper
 {
     /**

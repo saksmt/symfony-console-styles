@@ -6,6 +6,11 @@ use Smt\Component\Console\Helper\GentooQuestionHelper;
 use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
+/**
+ * Gentoo distribution style
+ * @api
+ * @package Smt\Component\Console\Style
+ */
 class GentooStyle extends AbstractLinuxDistributionStyle
 {
     /**

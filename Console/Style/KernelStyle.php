@@ -6,6 +6,10 @@ use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Helper\SymfonyQuestionHelper;
 
+/**
+ * Linux kernel output style
+ * @package Smt\Component\Console\Style
+ */
 class KernelStyle extends AbstractLinuxDistributionStyle
 {
 

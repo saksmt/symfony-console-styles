@@ -13,7 +13,11 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\Console\Style\OutputStyle;
 
-abstract class AbstractLinuxDistributionStyle extends OutputStyle
+/**
+ * Base class for all linux distribution styles
+ * @package Smt\Component\Console\Style
+ */
+abstract class AbstractLinuxDistributionStyle extends OutputStyle implements ImprovedStyleInterface
 {
 
     /**
@@ -74,19 +78,16 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     abstract public function title($message);
 
     /**
      * @inheritdoc
-     * @return $this
      */
     abstract public function section($message);
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function listing(array $elements)
     {
@@ -101,9 +102,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
     abstract protected function nestedListElement($element, $level = 1);
 
     /**
-     * @param array $elements
-     * @param int $level
-     * @return $this
+     * @inheritdoc
      */
     public function nestedList(array $elements, $level = 1)
     {
@@ -122,14 +121,10 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
      */
     protected function addPrefixes(OutputFormatterInterface $formatter)
     {
-        ;
     }
 
     /**
-     * @param string|array $message
-     * @param string $type
-     * @param string $prefix
-     * @return $this
+     * @inheritdoc
      */
     public function message($message, $type, $prefix = '')
     {
@@ -144,8 +139,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
     }
 
     /**
-     * @param string|array $message
-     * @return $this
+     * @inheritdoc
      */
     public function info($message)
     {
@@ -154,7 +148,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function text($message)
     {
@@ -163,7 +156,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function success($message)
     {
@@ -172,7 +164,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function error($message)
     {
@@ -181,7 +172,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function warning($message)
     {
@@ -190,25 +180,21 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     abstract public function note($message);
 
     /**
      * @inheritdoc
-     * @return $this
      */
     abstract public function caution($message);
 
     /**
-     * @param string $message
-     * @return $this
+     * @inheritdoc
      */
     abstract public function important($message);
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function table(array $headers, array $rows)
     {
@@ -256,7 +242,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function newLine($count = 1)
     {
@@ -265,7 +250,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function progressStart($max = 0)
     {
@@ -276,7 +260,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function progressAdvance($step = 1)
     {
@@ -286,7 +269,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function progressFinish()
     {
@@ -313,7 +295,7 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
     }
 
     /**
-     * @return ProgressBar
+     * @inheritdoc
      */
     public function getProgressBar()
     {
@@ -335,7 +317,6 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function write($message, $newline = false, $type = self::OUTPUT_NORMAL)
     {
@@ -345,11 +326,34 @@ abstract class AbstractLinuxDistributionStyle extends OutputStyle
 
     /**
      * @inheritdoc
-     * @return $this
      */
     public function writeln($message, $type = self::OUTPUT_NORMAL)
     {
         parent::writeln($message, $type);
         return $this;
+    }
+
+    /** @inheritdoc */
+    public function isQuiet()
+    {
+        return $this->getVerbosity() >= self::VERBOSITY_QUIET;
+    }
+
+    /** @inheritdoc */
+    public function isVerbose()
+    {
+        return $this->getVerbosity() >= self::VERBOSITY_VERBOSE;
+    }
+
+    /** @inheritdoc */
+    public function isVeryVerbose()
+    {
+        return $this->getVerbosity() >= self::VERBOSITY_VERY_VERBOSE;
+    }
+
+    /** @inheritdoc */
+    public function isDebug()
+    {
+        return $this->getVerbosity() >= self::VERBOSITY_DEBUG;
     }
 }
